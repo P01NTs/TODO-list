@@ -1,71 +1,69 @@
-const addBtn = document.querySelector(".inputField > button");
+// getting element from DOM and declaring variables
 const inputField = document.querySelector(".inputField > input");
-const addItemToList = document.createElement("li");
+const addBtn = document.querySelector(".inputField > button");
+const deleteAllBtn = document.querySelector(".footer > button");
 const listOfTodos = document.querySelector(".todoList");
 const spanPendingTasks = document.querySelector(".pendingTasks");
-const deleteAllBtn = document.querySelector(".footer > button");
+const horloge = document.querySelector(".wrapper >header > span");
+//
 
-var listArr = [];
-
-// addBtn classHandler
+deleteAllBtnClassHandler = () => {
+  let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
+  localStorageData == null || localStorageData.length == 0
+    ? deleteAllBtn.classList.remove("active")
+    : deleteAllBtn.classList.add("active");
+};
 addBtnClassHandler = () => {
   let userInputValue = inputField.value;
-  if (userInputValue.trim() != 0) {
-    addBtn.classList.add("active");
-  } else {
-    addBtn.classList.remove("active");
-  }
-};
-deleteAllBtnClassHandler = () => {
-  if (listOfTodos.innerHTML != 0){
-    deleteAllBtn.classList.add("active");
-  }else{
-    deleteAllBtn.classList.remove("active");
-  }
-}
-inputField.onkeyup = () => {
-  addBtnClassHandler();
+  userInputValue.trim() != 0
+    ? addBtn.classList.add("active")
+    : addBtn.classList.remove("active");
 };
 
-let pendingTasksNumb = () => {
-  if (listOfTodos.innerText == 0) {
-    spanPendingTasks.innerText = "0";
-  } else {
-    spanPendingTasks.innerText = listArr.length;
-  }
-};
+const showTasks = () => {
+  let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
+  if (localStorageData == null || localStorageData.length == 0) return;
 
-let showTasks = () => {
-  listOfTodos.innerHTML = "";
   newLiTag = "";
-  listArr.map((elem, index) => {
-    newLiTag += `<li>${elem}<span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></li>`;
+  listArr = localStorageData.split(",");
+  listArr.forEach((element, index) => {
+    newLiTag += `<li>${element}<span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></li>`;
   });
   listOfTodos.innerHTML = newLiTag;
-  pendingTasksNumb();
-  deleteAllBtnClassHandler()
+  deleteAllBtnClassHandler();
 };
 
-let deleteTask = (n) => {
-  listArr.splice(n, 1);
+const refreshTasks = () => {
+  let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
+  let userInputValue = inputField.value; //get UserInputValue
+  let listArr = []; //declaring array
+  if (localStorageData == null) {
+    localStorage.setItem("tasks", ""); //create new localStorage
+  } else {
+    if (localStorageData != 0) listArr = localStorageData.split(","); //turning localStorage string into an array
+    if (userInputValue.trim() != 0 && listArr.indexOf(userInputValue) == -1) {
+      listArr.push(userInputValue); //pushing userInputValue to the array
+      localStorage.setItem(
+        "tasks", //refreshing the localStorage
+        listArr.reduce((acumulator, item) => {
+          return acumulator + "," + item;
+        })
+      );
+    }
+  }
+
   showTasks();
+};
+refreshTasks();
+
+// pressEnter call addBtnonclick
+inputField.onkeyup = (e) => {
+  let userInputValue = inputField.value;
+  if (e.which == 13 && userInputValue.trim() != 0) addBtn.click();
+  addBtnClassHandler();
 };
 
 addBtn.onclick = () => {
-  if (listArr.indexOf(inputField.value) == -1) {
-    listArr.push(inputField.value);
-    showTasks();
-    inputField.value = "";
-  } else {
-    inputField.value = "";
-  }
+  refreshTasks();
   addBtnClassHandler();
-  pendingTasksNumb();
 };
-pendingTasksNumb();
-
-deleteAllBtn.onclick = () => {
-  listArr = [];
-  showTasks();
-
-}
