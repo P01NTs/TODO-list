@@ -8,7 +8,7 @@ const horloge = document.querySelector(".wrapper >header > span");
 //
 
 deleteAllBtnClassHandler = () => {
-  let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
+  let localStorageData = localStorage.getItem("tasks");
   localStorageData == null || localStorageData.length == 0
     ? deleteAllBtn.classList.remove("active")
     : deleteAllBtn.classList.add("active");
@@ -22,15 +22,15 @@ addBtnClassHandler = () => {
 
 const showTasks = () => {
   let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
-  if (localStorageData == null || localStorageData.length == 0) return;
-
+  if (localStorageData == null || localStorageData.length == 0) return; //do nothing if no tasks
   newLiTag = "";
-  listArr = localStorageData.split(",");
+  listArr = localStorageData.split(","); //turning localStorage string into an array
   listArr.forEach((element, index) => {
+    //create a list <li> with element
     newLiTag += `<li>${element}<span class="icon" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></span></li>`;
   });
-  listOfTodos.innerHTML = newLiTag;
-  deleteAllBtnClassHandler();
+  listOfTodos.innerHTML = newLiTag; //adding <li> into actual ul
+  deleteAllBtnClassHandler(); //refreshing the btn class
 };
 
 const refreshTasks = () => {
@@ -46,9 +46,10 @@ const refreshTasks = () => {
       localStorage.setItem(
         "tasks", //refreshing the localStorage
         listArr.reduce((acumulator, item) => {
-          return acumulator + "," + item;
+          return acumulator + "," + item; //returning the array into a string
         })
       );
+      inputField.value = "";
     }
   }
 
@@ -66,4 +67,28 @@ inputField.onkeyup = (e) => {
 addBtn.onclick = () => {
   refreshTasks();
   addBtnClassHandler();
+};
+
+deleteTask = (index) => {
+  let localStorageData = localStorage.getItem("tasks"); //get LocalStorage
+  listArr = localStorageData.split(","); //turning localStorage string into an array
+  listArr.splice(index, 1); //delete the task at index
+  if (listArr.length > 0) {
+    localStorage.setItem(
+      "tasks", //refreshing the localStorage
+      listArr.reduce((acumulator, item) => {
+        return acumulator + "," + item; //returning the array into a string
+      })
+    );
+    showTasks();
+  } else {
+    localStorage.setItem("tasks", ""); //remove the last task from the localStorage
+    listOfTodos.innerHTML = ""; //remove the last task from list
+  }
+};
+
+deleteAllBtn.onclick = () => {
+  localStorage.setItem("tasks", ""); //remove the tasks from localStorage
+  listOfTodos.innerHTML = ""; //remove the tasks from list
+  deleteAllBtn.classList.remove("active");
 };
