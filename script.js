@@ -5,6 +5,7 @@ const deleteAllBtn = document.querySelector(".footer > button");
 const listOfTodos = document.querySelector(".todoList");
 const spanPendingTasks = document.querySelector(".pendingTasks");
 const horloge = document.querySelector(".wrapper >header > span");
+const instagram = document.querySelector(".instagram");
 //
 
 deleteAllBtnClassHandler = () => {
@@ -77,7 +78,7 @@ deleteTask = (index) => {
     localStorage.setItem(
       "tasks", //refreshing the localStorage
       listArr.reduce((acumulator, item) => {
-        return acumulator + "," + item; //returning the array into a string
+        return acumulator + "$" + item; //returning the array into a string
       })
     );
     showTasks();
@@ -92,3 +93,7 @@ deleteAllBtn.onclick = () => {
   listOfTodos.innerHTML = ""; //remove the tasks from list
   deleteAllBtn.classList.remove("active");
 };
+
+instagram.onclick = () => {
+  
+}
