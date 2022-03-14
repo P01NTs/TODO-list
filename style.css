@@ -19,6 +19,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
 }
 .wrapper {
   padding: 1.5625rem;
@@ -44,8 +45,8 @@ body {
 }
 .wrapper .inputField {
   margin: 1.25rem 0;
-  width: 100%;
   display: flex;
+  width: 100%;
   height: 2.8125rem;
 }
 .inputField input {
@@ -147,6 +148,37 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
+
+.contact {
+  position: fixed;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+}
+.instagram {
+  color: #fff;
+  border-radius: 0.5rem;
+  height: 4rem;
+  width: 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3.125rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background: rgba(243, 183, 225, 0.342);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 3px 8px;
+}
+.instagram:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.instagram > img {
+  width: 2.5rem;
+  border-radius: 3.125rem;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  margin-right: 0.3rem;
+}
 @media screen and (max-width: 660px) {
   * {
     font-size: 1.01rem;
@@ -160,6 +192,8 @@ body {
   .wrapper {
     margin: 0;
     max-width: 100%;
+    min-width: 300px;
+
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -167,5 +201,16 @@ body {
   }
   .todoList {
     margin-bottom: auto;
+  }
+  .contact{
+    margin-top: 1rem;
+    width: 100%;
+    position: relative;
+  }
+  
+  .instagram{
+    margin: auto;
+    width: 100%;
+    min-width: 300px;
   }
 }
