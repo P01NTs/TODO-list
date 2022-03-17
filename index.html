@@ -1,35 +1,42 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <!-- Coding By CodingNepal - youtube.com/codingnepal -->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App | JavaScript </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-  <div class="wrapper wrappers">
-    <header>Todo App<span></span></header>
-    <div class="inputField">
-      <input type="text" placeholder="Add your new todo">
-      <button><i class="fas fa-plus"></i></button>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App | JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>Todo App<span></span></header>
+      <div class="inputField">
+        <input type="text" placeholder="Add your new todo" />
+        <button><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="option"></div>
+      <ul type="checkbox" class="todoList">
+        <!-- data comes from local storage -->
+      </ul>
+      <div class="footer">
+        <span>You have <span class="pendingTasks"></span> pending tasks</span>
+        <button class="deleteAll">Clear All</button>
+      </div>
     </div>
-    <ul class="todoList">
-      <!-- data comes from local storage -->
-    </ul>
-    <div class="footer">
-      <span>You have <span class="pendingTasks"></span> pending tasks</span>
-      <button class="deleteAll">Clear All</button>
-    </div>
-  </div>
-  <div class="contact">
-    <a href="https://www.instagram.com/kach.mohh/" target="_blank" class="instagram">
-      <img src="./src/IMG_20220312_153846_821.jpg" alt="" srcset="">
+
+    <a
+      href="https://www.instagram.com/kach.mohh/"
+      target="_blank"
+      class="instagram"
+    >
+      <img src="./src/IMG_20220312_153846_821.jpg" alt="" srcset="" />
       <p>@kach.mohh</p>
     </a>
-  </div>
-  <script src="script.js"></script>
 
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
