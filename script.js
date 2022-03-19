@@ -125,4 +125,6 @@ deleteAllBtn.onclick = () => {
   localStorage.setItem("tasks", listArr); //remove the tasks from localStorage
   listOfTodos.innerHTML = ""; //remove the tasks from list
   deleteAllBtn.classList.remove("active");
+  pendingTasks();
+
 };
