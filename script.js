@@ -36,9 +36,9 @@ let horlogeFun = () => {
   };
   let date = new Date();
   date.getDate;
-  let fullDate = `${twoNum(date.getDate())}/${
-    twoNum(date.getMonth()+1)
-  }/${date.getFullYear()}`;
+  let fullDate = `${twoNum(date.getDate())}/${twoNum(
+    date.getMonth() + 1
+  )}/${date.getFullYear()}`;
   return `${twoNum(date.getHours())}:${twoNum(
     date.getMinutes()
   )}  -   ${fullDate}`;
@@ -87,7 +87,6 @@ const refreshTasks = () => {
       inputField.value = "";
     }
   }
-
   showTasks();
 };
 refreshTasks();
@@ -118,6 +117,7 @@ deleteTask = (index) => {
     localStorage.setItem("tasks", ""); //remove the last task from the localStorage
     listOfTodos.innerHTML = ""; //remove the last task from list
   }
+  pendingTasks();
 };
 
 deleteAllBtn.onclick = () => {
