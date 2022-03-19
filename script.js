@@ -36,9 +36,9 @@ let horlogeFun = () => {
   };
   let date = new Date();
   date.getDate;
-  let fullDate = `${twoNum(date.getDay())}/${twoNum(
-    date.getMonth()
-  )}/${date.getFullYear()}`;
+  let fullDate = `${twoNum(date.getDate())}/${
+    twoNum(date.getMonth()+1)
+  }/${date.getFullYear()}`;
   return `${twoNum(date.getHours())}:${twoNum(
     date.getMinutes()
   )}  -   ${fullDate}`;
@@ -56,12 +56,12 @@ const showTasks = () => {
     newLiTag += `<li>  
       <input type="checkbox" id="">
       <i class="fa fa-check"></i>
-      ${element.title}
+      <p class="text">${element.title}</p>  
       <span class="icon" onclick="deleteTask(${index})">
         <i class="fas fa-trash"></i>
       </span>
     </li>
-    <div>${element.time}</div>`;
+    <div class="createTime">${element.time}</div>`;
   });
   listOfTodos.innerHTML = newLiTag; //adding <li> into actual ul
   deleteAllBtnClassHandler(); //refreshing the btn class

@@ -111,16 +111,25 @@ body {
   border-radius: 0.1875rem;
   padding: 0.625rem 0.9375rem;
   cursor: default;
-  overflow: hidden;
   word-wrap: break-word;
   display: flex;
   align-items: center;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.todoList > li > .text {
+  width: 85%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  display: flex;
+  text-align: justify;
 }
 .todoList > li > input {
   position: relative;
   appearance: none;
   margin-right: 0.625rem;
-  border: 2px solid #8e49e8;
+  border: 2px solid #8e49e87a;
   border-radius: 5px;
   min-width: 1.125rem;
   min-height: 1.125rem;
@@ -128,12 +137,16 @@ body {
   background: #fff;
   transition-duration: 0.3s;
 }
+.todoList > li > input:focus {
+  outline: none;
+  border: 2px solid #8e49e8;
+}
 .todoList > li > input:checked {
   background-color: #8e49e8;
 }
 .fa-check {
   font-weight: 100;
-  font-size: 13px;
+  font-size: 0.8125rem;
   position: relative;
   left: -26px;
   color: #fff;
@@ -147,21 +160,26 @@ body {
   background: #e74c3c;
   width: 2.8125rem;
   height: 100%;
-  text-align: center;
   color: #fff;
   padding: 0.625rem 0.9375rem;
   border-radius: 0 0.1875rem 0.1875rem 0;
   cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   flex-flow: column-reverse;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  transition: all 0.2s ease;
 }
 .todoList > li:hover > .icon {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   right: 0rem;
 }
 
+.todoList .createTime {
+  font-size: 0.85rem;
+}
 .wrapper .footer {
   display: flex;
   width: 100%;
@@ -200,16 +218,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top:1.875rem;
+  margin-top: 1.875rem;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
   background: rgba(243, 183, 225, 0.342);
-  
   box-shadow: 0rem 0.625rem 0.9375rem rgba(0, 0, 0, 0.1);
 }
 .instagram:hover {
   box-shadow: 0rem 0.625rem 0.9375rem rgba(0, 0, 0, 0.2);
-
 }
 
 .instagram > img {
@@ -247,7 +263,7 @@ body {
   }
   .instagram {
     width: 100%;
-  max-width: none;
+    max-width: none;
 
     min-width: 300px;
   }
