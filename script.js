@@ -3,8 +3,40 @@ const inputField = document.querySelector(".inputField > input");
 const addBtn = document.querySelector(".inputField > button");
 const deleteAllBtn = document.querySelector(".footer > button");
 const listOfTodos = document.querySelector(".todoList");
-const horloge = document.querySelector(".wrapper >header > span");
+const horloge = document.querySelector(".wrapper > header > span");
 const spanPendingTasks = document.querySelector(".pendingTasks");
+const inputBox = document.querySelector(".inputTodo");
+const dateBtn = document.querySelector(".inputDate");
+const checkArea = document.querySelector(".todoList > li");
+const checkBox = document.querySelector(".todoList > li > input");
+
+if (checkArea != null) {
+  checkArea.onclick = () => {
+    refreshTasks();
+    addBtnClassHandler();
+  };
+}
+// inputDate autoComplete
+inputBtnValue = () => {
+  horlogeFun();
+  dateBtn.value =
+    horlogeFun().getYear +
+    "-" +
+    horlogeFun().getMonth +
+    "-" +
+    horlogeFun().getDay;
+};
+
+// onkeyup event
+inputBox.onkeyup = () => {
+  let userEnteredValue = inputBox.value; //getting user entered value
+  if (userEnteredValue.trim() != 0) {
+    //if the user value isn't only spaces
+    addBtn.classList.add("active"); //active the add button
+  } else {
+    addBtn.classList.remove("active"); //unactive the add button
+  }
+};
 
 //
 pendingTasks = () => {
@@ -25,7 +57,7 @@ addBtnClassHandler = () => {
 };
 
 //getLocalTime
-let horlogeFun = () => {
+horlogeFun = () => {
   //time two number manager
   twoNum = (elem) => {
     if (elem < 10) {
@@ -35,13 +67,15 @@ let horlogeFun = () => {
     }
   };
   let date = new Date();
-  date.getDate;
-  let fullDate = `${twoNum(date.getDate())}/${twoNum(
-    date.getMonth() + 1
-  )}/${date.getFullYear()}`;
-  return `${twoNum(date.getHours())}:${twoNum(
-    date.getMinutes()
-  )}  -   ${fullDate}`;
+  let dateObj = {
+    getHours: twoNum(date.getHours()),
+    getMinutes: twoNum(date.getMinutes()),
+    getDay: twoNum(date.getDate()),
+    getMonth: twoNum(date.getMonth() + 1),
+    getYear: date.getFullYear(),
+  };
+
+  return dateObj;
 };
 
 const showTasks = () => {
@@ -55,7 +89,6 @@ const showTasks = () => {
     //create a list <li> with element
     newLiTag += `<li>  
       <input type="checkbox" id="">
-      <i class="fa fa-check"></i>
       <p class="text">${element.title}</p>  
       <span class="icon" onclick="deleteTask(${index})">
         <i class="fas fa-trash"></i>
@@ -79,7 +112,19 @@ const refreshTasks = () => {
     if (localStorageData != 0) listArr = JSON.parse(localStorageData); //turning localStorage string into an array
     // if (localStorageData != 0) listArr = localStorageData.split(","); //turning localStorage string into an array
     if (userInputValue.trim() != 0) {
-      listArr.push({ title: userInputValue, time: horlogeFun() }); //pushing userInputValue to the array
+      listArr.unshift({
+        title: userInputValue,
+        time:
+          horlogeFun().getHours +
+          ":" +
+          horlogeFun().getMinutes +
+          "-" +
+          horlogeFun().getDay +
+          "/" +
+          horlogeFun().getMonth +
+          "/" +
+          horlogeFun().getYear,
+      }); //pushing userInputValue to the array
       localStorage.setItem(
         "tasks", //refreshing the localStorage
         JSON.stringify(listArr) //returning the array into a string
@@ -126,5 +171,5 @@ deleteAllBtn.onclick = () => {
   listOfTodos.innerHTML = ""; //remove the tasks from list
   deleteAllBtn.classList.remove("active");
   pendingTasks();
-
 };
+inputBtnValue();
