@@ -109,7 +109,7 @@ body {
   margin-bottom: 0.1875rem;
   background: #f2f2f2;
   border-radius: 0.1875rem;
-  padding: 0.625rem 0.9375rem;
+  padding: 0 0.9375rem;
   cursor: default;
   word-wrap: break-word;
   display: flex;
@@ -120,15 +120,19 @@ body {
 }
 .todoList > li > .text {
   width: 85%;
+  padding: 0.625rem 0;
   box-sizing: border-box;
   word-wrap: break-word;
   display: flex;
   text-align: justify;
+  cursor: pointer;
 }
 .todoList > li > input {
   appearance: none;
   margin-right: 0.625rem;
   border-radius: 0.3125rem;
+  width: 13px;
+  height: 13px;
   min-width: 1.125rem;
   min-height: 1.125rem;
   cursor: pointer;

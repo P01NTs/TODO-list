@@ -12,8 +12,7 @@ const checkBox = document.querySelector(".todoList > li > input");
 
 if (checkArea != null) {
   checkArea.onclick = () => {
-    refreshTasks();
-    addBtnClassHandler();
+
   };
 }
 // inputDate autoComplete
@@ -88,10 +87,11 @@ const showTasks = () => {
     horlogeFun();
     //create a list <li> with element
     newLiTag += `<li>  
-      <input type="checkbox" id="">
-      <p class="text">${element.title}</p>  
+      <input type="checkbox" id="elem_${index}">
+      <label for="elem_${index}" class="text">${element.title}</label>  
       <span class="icon" onclick="deleteTask(${index})">
         <i class="fas fa-trash"></i>
+        <i class="fas fa-plus"></i>
       </span>
     </li>
     <div class="createTime">${element.time}</div>`;
