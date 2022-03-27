@@ -82,7 +82,6 @@ const showTasks = () => {
   newLiTag = "";
   listArr = JSON.parse(localStorageData); //turning localStorage string into an array
   listArr.forEach((element, index) => {
-    horlogeFun();
     //create a list <li> with element
     newLiTag += `<li>  
       <input type="checkbox" id="elem_${index}">
@@ -90,7 +89,7 @@ const showTasks = () => {
       <span class="iconEdit" onclick="editTask(${index})">
       <i class="fa fa-pen"></i>
       </span>
-      <span class="icon" onclick="deleteTask(${index})">
+      <span class="iconDelete" onclick="deleteTask(${index})">
       <i class="fas fa-trash"></i>
       </span>
     </li>

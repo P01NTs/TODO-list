@@ -131,8 +131,8 @@ body {
   appearance: none;
   margin-right: 0.625rem;
   border-radius: 0.3125rem;
-  width: 13px;
-  height: 13px;
+  width: 0.8125rem;
+  height: 0.8125rem;
   min-width: 1.125rem;
   min-height: 1.125rem;
   cursor: pointer;
@@ -169,7 +169,7 @@ body {
   color: #fff;
   pointer-events: none;
 }
-.todoList > li > .icon {
+.todoList > li > .iconDelete {
   position: absolute;
   right: -2.8125rem;
   top: 50%;
@@ -188,7 +188,7 @@ body {
   text-align: center;
   transition: all 0.2s ease;
 }
-.todoList > li:hover > .icon {
+.todoList > li:hover > .iconDelete {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   right: 0rem;
