@@ -11,9 +11,7 @@ const checkArea = document.querySelector(".todoList > li");
 const checkBox = document.querySelector(".todoList > li > input");
 
 if (checkArea != null) {
-  checkArea.onclick = () => {
-
-  };
+  checkArea.onclick = () => {};
 }
 // inputDate autoComplete
 inputBtnValue = () => {
@@ -89,9 +87,11 @@ const showTasks = () => {
     newLiTag += `<li>  
       <input type="checkbox" id="elem_${index}">
       <label for="elem_${index}" class="text">${element.title}</label>  
+      <span class="iconEdit" onclick="editTask(${index})">
+      <i class="fa fa-pen"></i>
+      </span>
       <span class="icon" onclick="deleteTask(${index})">
-        <i class="fas fa-trash"></i>
-        <i class="fas fa-plus"></i>
+      <i class="fas fa-trash"></i>
       </span>
     </li>
     <div class="createTime">${element.time}</div>`;
